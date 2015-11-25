@@ -2,21 +2,29 @@
 <head>
 <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 <script>
-$(document).ready(function() {
-	var url = "game.json";
+function readGameJson(url, callback)
+{
 	$.ajax({
-  url: url,
-  dataType: 'json',
-  success: function(result){
-    alert("token recieved: " + result.token);
-  },
-  error: function(request, textStatus, errorThrown) {
-    alert(textStatus);
-  },
-  complete: function(request, textStatus) { //for additional info
-    alert(request.responseText);
-    alert(textStatus);
-  }
+	  url: url,
+	  dataType: 'json',
+	  success: function(result){
+	    alert("token recieved: " + result.token);
+	    callback(result);
+	  },
+	  error: function(request, textStatus, errorThrown) {
+	    alert(textStatus);
+	  },
+	  complete: function(request, textStatus) { //for additional info
+	    alert(request.responseText);
+	    alert(textStatus);
+	  }
+	});
+}
+$(document).ready(function() {
+	readGameJson("game.json", function(data) {
+		var node = data[0];
+		alert(node.nodename);
+	});
 });
 	/*
 	$.getJSON("game.json", function (json) {
