@@ -4,7 +4,9 @@
 <script>
 $(document).ready(function() {
 	$.getJSON("game.json", function (json) {
-		$("chatArea").val(json[0].nodename);
+		var t = json[0].nodename;
+		console.log(nodename);
+		$("chatArea").val(t);
 	})
 });
 </script>
