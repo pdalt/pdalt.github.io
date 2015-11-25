@@ -45,6 +45,7 @@ var currLineCharIndex;
 
 var charDelayInMs = 40;
 var lineDelayInMs = 1250;
+var choiceDelayInMs = 800;
 
 function resetLines()
 {
@@ -53,7 +54,9 @@ function resetLines()
 	lines = [];
 }
 
-function displayLines(doneFunc)
+var displayLinesCallback;
+
+function displayLines()
 {
 	//alert(currLineIndex);
 	var line = lines[currLineIndex];
@@ -78,24 +81,42 @@ function displayLines(doneFunc)
 		}
 		else
 		{
-			setTimeout(doneFunc, lineDelayInMs);
+			//displayLinesCallback();
+			setTimeout(displayLinesCallback, lineDelayInMs);
 		}
 	}
 }
 
 function getUserInput()
 {
+	alert('done');
+}
 
+var buttons;
+var buttonIndex;
+
+function showButtons()
+{
+	if (buttonIndex < buttons.length)
+	{
+		buttons[buttonIndex++].show();
+		setTimeout(showButtons, choiceDelayInMs);
+	}
+}
+
+function hideButtons()
+{
+	buttons = [ $("#c0"), $("#c1"), $("#c2") ];
+	for (var i=0; i < buttons.length; i++) {
+		buttons[i].hide();
+	}
 }
 
 function displayChoices()
 {
-	resetLines();
-	for (var i=0; i < currNode.choices.length; i++)
-	{
-		lines.push(currNode.choices[i].text);
-		displayLines(getUserInput);
-	}
+	buttons = [ $("#c0"), $("#c1"), $("#c2") ];
+	buttonIndex = 0;
+	showButtons();
 }
 
 
@@ -103,14 +124,22 @@ function displayNode(node)
 {
 	resetLines();
 	lines = node.lines;
-	displayLines(displayChoices);
+	displayLinesCallback = displayChoices;
+	displayLines();
+}
+
+function loadChoices(node)
+{
+	$("#c0").html(node.choices[0].text);
+	$("#c1").html(node.choices[1].text);
+	$("#c2").html(node.choices[2].text);
 }
 
 $(document).ready(function() {
 	readGameJson("game.json", function(data) {
+		hideButtons();
 		currNode = data[0];
-		//alert(node.nodename);
-		//alert(node.lines.length);
+		loadChoices(currNode);
 		displayNode(currNode);
 	});
 });
@@ -121,5 +150,10 @@ $(document).ready(function() {
 <h1>Chattr Client</h1>
 <h2>Msg from DefinitelyNotABot1337</h2>
 <textarea rows="30" cols="80" id="chatBox"></textarea>
+<div id="buttonDiv">
+<button id="c0" value="0"></button>
+<button id="c1" value="1"></button>
+<button id="c2" value="2"></button>
+</div>
 </body>
 </html>
