@@ -3,14 +3,29 @@
 <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 <script>
 $(document).ready(function() {
-	alert('Ready');
+	var url = "game.json";
+	$.ajax({
+  url: url,
+  dataType: 'json',
+  success: function(result){
+    alert("token recieved: " + result.token);
+  },
+  error: function(request, textStatus, errorThrown) {
+    alert(textStatus);
+  },
+  complete: function(request, textStatus) { //for additional info
+    alert(request.responseText);
+    alert(textStatus);
+  }
+});
+	/*
 	$.getJSON("game.json", function (json) {
 		alert('Hey!');
 		alert(json);
 		var t = json[0].nodename;
 		console.log(nodename);
 		$("chatArea").val(t);
-	})
+	})*/
 });
 </script>
 </head>
