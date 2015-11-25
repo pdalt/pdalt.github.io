@@ -24,8 +24,8 @@ function readGameJson(url, callback)
 function print(ch)
 {
 	var textArea = $('chatArea');
-	var curr = textArea.val();
-	curr.val(curr + ch);
+	var currVal = textArea.val();
+	textArea.val(currVal + ch);
 }
 
 function displayLine(line)
