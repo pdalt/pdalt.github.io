@@ -1,4 +1,4 @@
-"conversation" : [
+[
 	{
 		"nodename": "start",
 		"lines": ["Hey!", "Want to play a game?"],
