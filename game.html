@@ -8,23 +8,47 @@ function readGameJson(url, callback)
 	  url: url,
 	  dataType: 'json',
 	  success: function(result){
-	    alert("token recieved: " + result.token);
+	    //alert("token recieved: " + result.token);
 	    callback(result);
 	  },
 	  error: function(request, textStatus, errorThrown) {
 	    alert(textStatus);
 	  },
 	  complete: function(request, textStatus) { //for additional info
-	    alert(request.responseText);
-	    alert(textStatus);
+	    //alert(request.responseText);
+	    //alert(textStatus);
 	  }
 	});
+}
+
+function print(ch)
+{
+	var textArea = $('chatArea');
+	var curr = textArea.val();
+	curr.val(curr + ch);
+}
+
+function displayLine(line)
+{
+	for (var c in line)
+	{
+		print(c);
+	}
+	print('\n');
+}
+
+function displayNode(node)
+{
+	for (var line in node.lines)
+	{
+		displayLine(line);
+	}
 }
 
 $(document).ready(function() {
 	readGameJson("game.json", function(data) {
 		var node = data[0];
-		alert(node.nodename);
+		displayNode(node);
 	});
 });
 
