@@ -43,18 +43,18 @@ function displayLine(line)
 
 function displayNode(node)
 {
-	for (var line in node.lines)
+	for (var i=0; i < node.lines.length; i++)
 	{
-		alert(line);
-		displayLine(line);
+		alert(node.lines[i]);
+		displayLine(node.lines[i]);
 	}
 }
 
 $(document).ready(function() {
 	readGameJson("game.json", function(data) {
 		var node = data[0];
-		alert(node.nodename);
-		alert(node.lines.length);
+		//alert(node.nodename);
+		//alert(node.lines.length);
 		displayNode(node);
 	});
 });
