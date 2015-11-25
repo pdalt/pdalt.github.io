@@ -53,6 +53,8 @@ function displayNode(node)
 $(document).ready(function() {
 	readGameJson("game.json", function(data) {
 		var node = data[0];
+		alert(node.nodename);
+		alert(node.lines.length);
 		displayNode(node);
 	});
 });
