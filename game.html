@@ -20,21 +20,14 @@ function readGameJson(url, callback)
 	  }
 	});
 }
+
 $(document).ready(function() {
 	readGameJson("game.json", function(data) {
 		var node = data[0];
 		alert(node.nodename);
 	});
 });
-	/*
-	$.getJSON("game.json", function (json) {
-		alert('Hey!');
-		alert(json);
-		var t = json[0].nodename;
-		console.log(nodename);
-		$("chatArea").val(t);
-	})*/
-});
+
 </script>
 </head>
 <body>
