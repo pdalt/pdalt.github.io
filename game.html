@@ -23,7 +23,12 @@ function readGameJson(url, callback)
 
 function print(ch)
 {
-	$("#chatBox").value = $("#chatBox").value + String(ch);
+	var box = $("#chatBox");
+	alert(box.value);
+	var chrStr = String(ch);
+	alert(chrStr);
+	box.value = box.value + chrStr;
+	alert(box.value);
 }
 
 function displayLine(line)
@@ -55,6 +60,6 @@ $(document).ready(function() {
 <body>
 <h1>Chattr Client</h1>
 <h2>Msg from DefinitelyNotABot1337</h2>
-<textarea rows="30" cols="80" id="chatBox"></textarea>
+<textarea rows="30" cols="80" id="chatBox">TESTING</textarea>
 </body>
 </html>
