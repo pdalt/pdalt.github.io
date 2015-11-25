@@ -1,0 +1,48 @@
+"conversation" : [
+	{
+		"nodename": "start",
+		"lines": ["Hey!", "Want to play a game?"],
+		"choices": [
+			{ 
+				"text": "Sure!",
+				"nodename": "enthusastic" 
+			},
+			{
+				"text": "Yeah,... okay.",
+				"nodename": "felony"
+			},
+			{
+				"text": "Not really.",
+				"nodename": "felony"
+			}
+		]
+	},
+	{
+		"nodename": "enthusastic",
+		"lines": 
+		[
+			"Wow. ", 
+			"You're,...", 
+			"Enthusiastic.", 
+			"Let me guess,...", 
+			"You wake up at 5 AM,... ", 
+			"run a mile,...", 
+			"take your supplements,...", 
+			"and top it off by eating non-gluten quinoa and kale for breakfast." 
+		],
+		"choices": 
+		[
+			{ 
+				"text": "How'd you guess? I also wear a FitBit!",
+				"nodename": "great"
+			},
+			{
+				"text": "You don't have many friends, do you,...",
+				"nodename": "asshole"
+			},
+			{
+				"text": "And you're one of those,.. 'I'm an asshole' types."
+			}
+		]
+	}
+]

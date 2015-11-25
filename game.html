@@ -1,0 +1,17 @@
+<html>
+<head>
+<script src="jquery-2.1.4.js"></script>
+<script>
+$(document).ready(function() {
+	$(document).getJson("game.json", function (json) {
+		window.log(json);
+	})
+});
+</script>
+</head>
+<body>
+<h1>Chattr Client</h1>
+<h2>Msg from DefinitelyNotABot1337</h2>
+<textarea rows="30" cols="80" id="chatArea"></textarea>
+</body>
+</html>
