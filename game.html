@@ -25,7 +25,7 @@ function print(ch)
 {
 	var textArea = $("textarea#chatBox");
 	var currVal = textArea.val();
-	textArea.val(currVal + "blah");
+	textArea.val(currVal + String(ch));
 }
 
 function displayLine(line)
