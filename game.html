@@ -1,9 +1,11 @@
 <html>
 <head>
 <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+<script src="game.json"></script>
 <script>
 function readGameJson(url, callback)
 {
+	/*
 	$.ajax({
 	  url: url,
 	  dataType: 'json',
@@ -19,43 +21,97 @@ function readGameJson(url, callback)
 	    //alert(textStatus);
 	  }
 	});
+*/
+	callback(json);
+	//alert(json.length);
 }
 
 function print(ch)
 {
-	var box = $("#chatBox");
-	alert(box.value);
-	var chrStr = String(ch);
-	alert(chrStr);
-	box.value = box.value + chrStr;
-	alert(box.value);
+	var box = $("textarea#chatBox");
+	box.val(box.val() + String(ch));
+	//alert(box.value);
+	//var chrStr = String(ch);
+	//alert(chrStr);
+	//box.value = box.value + chrStr;
+	//alert(box.value);
 }
 
-function displayLine(line)
+var currNode;
+
+var lines;
+var currLineIndex;
+var currLineCharIndex;
+
+var charDelayInMs = 40;
+var lineDelayInMs = 1250;
+
+function resetLines()
 {
-	for (var i=0; i < line.length; i++)
-	{
-		alert(line.charAt[i]);
-		print(line.charAt[i]);
-	}
-	print('\n');
+	currLineCharIndex = 0;
+	currLineIndex = 0;
+	lines = [];
 }
+
+function displayLines(doneFunc)
+{
+	//alert(currLineIndex);
+	var line = lines[currLineIndex];
+	var ch = line.charAt(currLineCharIndex++);
+	//alert(line);
+	//alert(ch);
+	print(ch);
+	if (currLineCharIndex < line.length)
+	{
+		// loop through this line's characters
+		setTimeout(displayLines, charDelayInMs);
+	}
+	else
+	{
+		// end of line
+		print('\n');
+		currLineCharIndex = 0;
+		currLineIndex++;
+		if (currLineIndex < lines.length)
+		{
+			setTimeout(displayLines, lineDelayInMs);
+		}
+		else
+		{
+			setTimeout(doneFunc, lineDelayInMs);
+		}
+	}
+}
+
+function getUserInput()
+{
+
+}
+
+function displayChoices()
+{
+	resetLines();
+	for (var i=0; i < currNode.choices.length; i++)
+	{
+		lines.push(currNode.choices[i].text);
+		displayLines(getUserInput);
+	}
+}
+
 
 function displayNode(node)
 {
-	for (var i=0; i < node.lines.length; i++)
-	{
-		alert(node.lines[i]);
-		displayLine(node.lines[i]);
-	}
+	resetLines();
+	lines = node.lines;
+	displayLines(displayChoices);
 }
 
 $(document).ready(function() {
 	readGameJson("game.json", function(data) {
-		var node = data[0];
+		currNode = data[0];
 		//alert(node.nodename);
 		//alert(node.lines.length);
-		displayNode(node);
+		displayNode(currNode);
 	});
 });
 
@@ -64,6 +120,6 @@ $(document).ready(function() {
 <body>
 <h1>Chattr Client</h1>
 <h2>Msg from DefinitelyNotABot1337</h2>
-<textarea rows="30" cols="80" id="chatBox">TESTING</textarea>
+<textarea rows="30" cols="80" id="chatBox"></textarea>
 </body>
 </html>
