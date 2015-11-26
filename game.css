@@ -19,6 +19,7 @@ textarea {
 }
 #chatDiv {
 	width: 50%;
+	min-width: 31rem;
 	margin: 1.8rem auto;
 	font-weight: normal;
 }
