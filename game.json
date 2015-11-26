@@ -1,7 +1,7 @@
 var json = [
 	{
 		"nodename": "start",
-		"lines": ["Hey!", "Want to play a game?"],
+		"lines": ["[User 'inconspicuousgentleman1337' has joined]", "Hey!", "Want to play a game?"],
 		"choices": [
 			{ 
 				"text": "Sure!",
