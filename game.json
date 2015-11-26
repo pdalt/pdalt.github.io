@@ -9,11 +9,11 @@ var json = [
 			},
 			{
 				"text": "Yeah,... okay.",
-				"nodename": "felony"
+				"nodename": "enthusastic"
 			},
 			{
 				"text": "Not really.",
-				"nodename": "felony"
+				"nodename": "enthusastic"
 			}
 		]
 	},
@@ -28,7 +28,7 @@ var json = [
 			"You wake up at 5 AM,... ", 
 			"run a mile,...", 
 			"take your supplements,...", 
-			"and top it off by eating non-gluten quinoa and kale for breakfast." 
+			"and top it off by eating a non-gluten quinoa and kale smoothie for breakfast." 
 		],
 		"choices": 
 		[
@@ -41,8 +41,81 @@ var json = [
 				"nodename": "asshole"
 			},
 			{
-				"text": "And you're one of those,.. 'I'm an asshole' types."
+				"text": "And you're one of those,.. 'I'm an asshole' types.'",
+				"nodename": "asshole"
 			}
 		]
+	},
+	{
+		"nodename": "great",
+		"lines": ["Yeeaaahhhh,....."],
+		"choices": [],
+		"nextnode": "felony"
+	},
+	{
+		"nodename": "asshole",
+		"lines": ["My friends don't think I'm an asshole.", "Or at least they have the decency to not mention it."],
+		"choices": [],
+		"nextnode": "felony"
+	},
+	{
+		"nodename": "felony",
+		"lines": ["Anyway, lets get started.", "Have you ever been convicted of a felony?"],
+		"choices": [
+			{ 
+				"text": "What? No.",
+				"nodename": "quicklearner" 
+			},
+			{
+				"text": "I can neither confirm nor deny, your honor.",
+				"nodename": "lawschooldropout"
+			},
+			{
+				"text": "Maybe. Who's askin'?",
+				"nodename": "defensive"
+			}
+		]
+	},
+	{
+		"nodename": "quicklearner",
+		"lines": ["Don't worry you'll pick it up quick,..", ""],
+		"choices": [
+			{ 
+				"text": "What!?",
+				"nodename": "ssn" 
+			},
+			{
+				"text": "Wait a sec,..",
+				"nodename": "ssn"
+			},
+			{
+				"text": "...",
+				"nodename": "ssn"
+			}
+		]
+	},
+	{
+		"nodename": "lawschooldropout",
+		"lines": ["Ah, law school drop-out I see, very nice,... ", ""],
+		"choices": [
+			{ 
+				"text": "Jerk.",
+				"nodename": "ssn" 
+			},
+			{
+				"text": "Hey! I did really well my first semester,...",
+				"nodename": "ssn"
+			},
+			{
+				"text": "I didn't drop-out, I left to fight the system, man.",
+				"nodename": "ssn"
+			}
+		]
+	},
+	{
+		"nodename": "defensive",
+		"lines": ["I guess that answer works for now.", "You'll definitely want to work on your phrasing more in your free time."],
+		"choices": [],
+		"nodename": "ssn"
 	}
 ];

@@ -106,7 +106,7 @@ function showButtons()
 
 function hideButtons()
 {
-	buttons = [ $("#c0"), $("#c1"), $("#c2") ];
+
 	for (var i=0; i < buttons.length; i++) {
 		buttons[i].hide();
 	}
@@ -114,33 +114,74 @@ function hideButtons()
 
 function displayChoices()
 {
-	buttons = [ $("#c0"), $("#c1"), $("#c2") ];
-	buttonIndex = 0;
-	showButtons();
-}
-
-
-function displayNode(node)
-{
-	resetLines();
-	lines = node.lines;
-	displayLinesCallback = displayChoices;
-	displayLines();
+	if (currNode.nextnode != null)
+	{
+		alert(currNode.nextnode);
+		var node = findNode(currNode.nextnode);
+		displayNode(node);
+	}
+	else
+	{
+		buttons = [ $("#c0"), $("#c1"), $("#c2") ];
+		buttonIndex = 0;
+		showButtons();
+	}
 }
 
 function loadChoices(node)
 {
-	$("#c0").html(node.choices[0].text);
-	$("#c1").html(node.choices[1].text);
-	$("#c2").html(node.choices[2].text);
+	for (var i=0; i < node.choices.length; i++)
+	{
+		buttons[i].html(node.choices[i].text);
+	}
 }
 
+function findNode(nodename)
+{
+	for (var i=0; i < jsonData.length; i++)
+	{
+		if (jsonData[i].nodename == nodename)
+		{
+			return jsonData[i];
+		}
+	}
+	return null;
+}
+
+function choiceClicked(index)
+{
+	var node;
+	//var index = button.value;
+	var nextNodeName = currNode.choices[index].nodename;
+	node = findNode(nextNodeName);
+	if (node != null)
+	{
+		displayNode(node);
+	}
+}
+
+function displayNode(node)
+{
+	hideButtons();
+	currNode = node;
+	loadChoices(currNode);
+	
+	resetLines();
+	lines = node.lines;
+	displayLinesCallback = displayChoices;
+	
+	displayLines();
+}
+
+var jsonData;
+
 $(document).ready(function() {
+
+	buttons = [ $("#c0"), $("#c1"), $("#c2") ];
+	
 	readGameJson("game.json", function(data) {
-		hideButtons();
-		currNode = data[0];
-		loadChoices(currNode);
-		displayNode(currNode);
+		jsonData = data;
+		displayNode(data[0]);
 	});
 });
 
@@ -151,9 +192,9 @@ $(document).ready(function() {
 <h2>Msg from DefinitelyNotABot1337</h2>
 <textarea rows="30" cols="80" id="chatBox"></textarea>
 <div id="buttonDiv">
-<button id="c0" value="0"></button>
-<button id="c1" value="1"></button>
-<button id="c2" value="2"></button>
+<button id="c0" onClick="choiceClicked(0);"></button>
+<button id="c1" onClick="choiceClicked(1);"></button>
+<button id="c2" onClick="choiceClicked(2);"></button>
 </div>
 </body>
 </html>
