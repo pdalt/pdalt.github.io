@@ -24,11 +24,11 @@ var json = [
 			"Wow. ", 
 			"You're,...", 
 			"Enthusiastic.", 
-			"Let me guess,...", 
-			"You wake up at 5 AM,... ", 
-			"run a mile,...", 
-			"take your supplements,...", 
-			"and top it off by eating a non-gluten quinoa and kale smoothie for breakfast." 
+			"Let me guess,", 
+			"You wake up at 5 AM,", 
+			"Run a mile,", 
+			"Take your supplements,", 
+			"and top it off with a non-gluten quinoa and kale smoothie." 
 		],
 		"choices": 
 		[
@@ -54,7 +54,7 @@ var json = [
 	},
 	{
 		"nodename": "asshole",
-		"lines": ["My friends don't think I'm an asshole.", "Or at least they have the decency to not mention it."],
+		"lines": ["I have lots of friends!", "And none of them think I'm an asshole :).", "I think."],
 		"choices": [],
 		"nextnode": "felony"
 	},
@@ -67,7 +67,7 @@ var json = [
 				"nodename": "quicklearner" 
 			},
 			{
-				"text": "I can neither confirm nor deny, your honor.",
+				"text": "'No comment.'",
 				"nodename": "lawschooldropout"
 			},
 			{
@@ -78,44 +78,50 @@ var json = [
 	},
 	{
 		"nodename": "quicklearner",
-		"lines": ["Don't worry you'll pick it up quick,..", ""],
+		"lines": ["Don't worry, you seem like a quick learner.", "And I'm an awesome teacher.", "Humble too.", "Probably the best at being humble, actually."],
 		"choices": [
 			{ 
 				"text": "What!?",
-				"nodename": "ssn" 
+				"nodename": "connectionLost" 
 			},
 			{
 				"text": "Wait a sec,..",
-				"nodename": "ssn"
+				"nodename": "connectionLost"
 			},
 			{
 				"text": "...",
-				"nodename": "ssn"
+				"nodename": "connectionLost"
 			}
 		]
 	},
 	{
 		"nodename": "lawschooldropout",
-		"lines": ["Ah, law school drop-out I see, very nice,... ", ""],
+		"lines": ["Excellent!", "A law school drop-out!", "We're going to make a *great* team!"],
 		"choices": [
 			{ 
 				"text": "Jerk.",
-				"nodename": "ssn" 
+				"nodename": "connectionLost" 
 			},
 			{
 				"text": "Hey! I did really well my first semester,...",
-				"nodename": "ssn"
+				"nodename": "connectionLost"
 			},
 			{
 				"text": "I didn't drop-out, I left to fight the system, man.",
-				"nodename": "ssn"
+				"nodename": "connectionLost"
 			}
 		]
 	},
 	{
 		"nodename": "defensive",
-		"lines": ["I guess that answer works for now.", "You'll definitely want to work on your phrasing more in your free time."],
+		"lines": ["I guess that answer works for now.", "You'll definitely want to work on your phrasing more in the future."],
 		"choices": [],
-		"nodename": "ssn"
+		"nextnode": "connectionLost"
+	},
+	{
+		"nodename": "connectionLost",
+		"lines": ["[disconnected]", "[attempting to reconnect]", "...", "...", "...", "[connection lost]"],
+		"choices": [],
+		"nextnode": ""
 	}
 ];
